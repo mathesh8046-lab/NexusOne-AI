@@ -3,7 +3,7 @@
 from fastapi import FastAPI
 from app.api.auth import router as auth_router
 from app.api.routes import router
-
+from app.api.ai_requests import router as ai_requests_router
 
 app = FastAPI(
     title="NexusOne AI",
@@ -17,6 +17,11 @@ app.include_router(
     auth_router,
     prefix="/api/v1/auth",
     tags=["Authentication"]
+)
+app.include_router(
+    ai_requests_router,
+    prefix="/api/v1/ai-requests",
+    tags=["AI Requests"]
 )
 
 @app.get("/")
